@@ -15,9 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/events', ['uses'=>('frontend.index');
-});
+Route::get('/events',['uses'=>'EventController@getAll']);
 
 Route::auth();
+
+Route::resource('admin/users', 'AdminUserController');
 
 Route::get('/home', 'HomeController@index');
