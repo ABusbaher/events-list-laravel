@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class AdminUserController extends Controller
 {
@@ -83,6 +84,7 @@ class AdminUserController extends Controller
         $user = User::findOrFail($id);
         $input = $request->all();
         $user->update($input);
+        Session::flash('updated_user','Korisnik je uspešno ažuriran');
         return redirect('/admin/users');
     }
 
@@ -94,6 +96,8 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id)->delete();
+        Session::flash('deleted_user','Korisnik je uspešno obirsan');
+        return redirect('/admin/users');
     }
 }

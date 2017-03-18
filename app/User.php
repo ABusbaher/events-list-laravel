@@ -13,7 +13,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password','is_active',
-        'user_id','role_id'
+        'user_id','role_id',
     ];
 
     /**
@@ -31,5 +31,13 @@ class User extends Authenticatable
 
     public function event(){
       return $this->hasMany('App\Event','event-users');
+    }
+
+    public function isAdmin(){
+        if($this->role->name == "administrator" && $this->is_active == 1){
+            return true;
+        }
+        return false;
+
     }
 }

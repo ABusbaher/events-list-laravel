@@ -28,13 +28,20 @@
 
             <div class="form-group">
                 {!! Form::label('role_id', 'Pozicija:') !!}
-                {!! Form::select('role_id',$roles, null, ['class' => 'form-control']) !!}
+                {!! Form::select('role_id',$roles, 2, ['class' => 'form-control']) !!}
             </div>
-
-            <button class="btn btn-success" type="submit">Izmeni korisnika</button>
+            <div class="clearfix">
+            <button class="btn btn-success pull-left" type="submit">Izmeni korisnika</button>
 
             {!! Form::close() !!}
 
+            {!! Form::open(['method'=>'DELETE', 'action' => ['AdminUserController@destroy',$user->id]]) !!}
+
+
+                <button class="btn btn-danger pull-right" type="submit">Obriši korisnika</button>
+
+              {!! Form::close() !!}
+            </div>
         </div>
     </div>
 @endsection
