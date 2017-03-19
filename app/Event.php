@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
@@ -12,6 +13,12 @@ class Event extends Model
 
     protected $fillable = [
         'title', 'description', 'place','date_and_time',
-        'image'
+        'image', 'event_id'
     ];
+
+    public function getDate_and_timeAtribute($date){
+        return Carbon::createFromFormat('d/m/Y H:m',$date);
+    }
+
+    protected $primaryKey = 'event_id';
 }

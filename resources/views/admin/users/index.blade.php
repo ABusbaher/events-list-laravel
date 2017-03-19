@@ -9,12 +9,12 @@
           <br /><br />
            @if(Session::has('deleted_user'))
               <div class="alert alert-danger">
-                    <p>{{session('deleted_user')}}</p>
+                    <h4>{{session('deleted_user')}}</h4>
               </div>
             @endif
 
             @if(Session::has('updated_user'))
-                <div class="bg-success">
+                <div class="alert alert-success">
                      <h4>{{session('updated_user')}}</h4>
                 </div>
              @endif

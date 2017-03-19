@@ -10,10 +10,11 @@
                 @foreach($chunk as $event)
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/350x200" alt="...">
+                            <img class="img-responsive" style="max-width: 350px" src="{{ URL::to('/') }}/images/{{$event->image}}"
+                                 alt="...">
                             <div class="caption">
                                 <h3>{{$event->title}}</h3>
-                                <p>{{$event->description}}</p>
+                                <p>{!! $event->description !!}</p>
                                 <div class="clearfix">
                                     <div class="pull-left"><p><i>{{$event->date_and_time}},{{$event->place}}</i></p></div>
                                     <p><a href="#" class="btn btn-primary pull-right" role="button">Prijavi se</a>

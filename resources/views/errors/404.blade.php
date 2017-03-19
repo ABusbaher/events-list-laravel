@@ -16,7 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="wrap">
     <h1>Events.rs</h1>
     <div class="banner">
-        <img src="images/banner.png" alt="" />
+        <img src="{{ URL::to('/') }}/images/banner.png" alt="Something wrong" />
     </div>
     <div class="page">
         <h2>Dude,we can't find that page!</h2><br>

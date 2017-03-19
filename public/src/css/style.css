@@ -66,11 +66,18 @@ hr {
     background-color: #fff!important;
 }
 
-#dodaj_knjigu{
-    text-align: center;
+.img-event{
+    max-width: 450px;
+    padding: 20px;
 }
-#dodaj_knjigu a{
-    font-size: 20px !important;
+
+.clearfix{
+    padding: 20px;
+}
+
+.p-event{
+    margin-top: 50px;
+    padding: 20px;
 }
 
 /*---------- PAGINATION STYLE ---------- */
