@@ -9,4 +9,7 @@ class EventUser extends Model
     protected $fillable = [
         'user_id','event_id'
     ];
+
+    protected $table = 'event-users';
+
 }

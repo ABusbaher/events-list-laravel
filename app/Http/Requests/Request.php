@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 abstract class Request extends FormRequest
@@ -15,4 +16,18 @@ abstract class Request extends FormRequest
             'is_active' => 'required'
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'user_id.required' => 'Morate biti ulogovani da bi ste se prijavili za dogadjaj',
+            'event_id.unique:event-users,event_id,NULL,id,user_id,' => 'Već ste se prijavili na događaj',
+        ];
+        $validation = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $messages );;
+
+    }
+
 }

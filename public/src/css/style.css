@@ -66,9 +66,17 @@ hr {
     background-color: #fff!important;
 }
 
+.single_page_p{
+    padding: 20px 0 20px 0;
+}
+
 .img-event{
     max-width: 450px;
     padding: 20px;
+}
+
+.a_search{
+    color: #0f0fbd!important;
 }
 
 .clearfix{

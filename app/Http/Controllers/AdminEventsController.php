@@ -15,10 +15,20 @@ class AdminEventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $events_s = Event::select('event_id','title','image');
+        $search = $request->get('search');
+        if(!empty($search)) {
+            $events_s->where('title', 'like', '%' . $search . '%')
+                ->orWhere('date_and_time', 'LIKE', '%' . $search . '%')
+                ->orWhere('place', 'LIKE', '%' . $search . '%');
+            $events_s = $events_s->paginate(6);
+
+        }
+
         $events = Event::all();
-        return view('admin.events.index',compact('events'));
+        return view('admin.events.index',compact('events','events_s'));
     }
 
     /**
@@ -127,4 +137,6 @@ class AdminEventsController extends Controller
         Session::flash('deleted_event','Dogadjaj i slika su obrisani');
         return redirect('/admin/events');
     }
+
+
 }

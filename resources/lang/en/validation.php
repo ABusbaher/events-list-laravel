@@ -95,6 +95,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'user_id'=>['required' =>
+            'Morate biti ulogovani da bi ste se prijavili za dogadjaj',
+        ],
+
+        'event_id'=>['unique:event-users,event_id,NULL,id,user_id' =>
+            'Već ste se prijavili na događaj'],
     ],
 
     /*

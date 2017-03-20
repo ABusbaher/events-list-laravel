@@ -16,6 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('/events',['uses'=>'EventController@getAll','as'=>'events']);
+Route::get('/event/search',['uses'=>'SearchController@get','as'=>'event.search']);
+//Route::get('/event/search?=event',['uses'=>'SearchController@get','as'=>'event.searching']);
+
+Route::post('/event/{event_id}',['uses'=>'EventController@prijava','as'=>'prijava']);
+Route::get('/event/{event_id}',['uses'=>'EventController@getSingle','as'=>'single_event']);
 
 Route::auth();
 Route::group(['middleware'=>'admin'],function(){

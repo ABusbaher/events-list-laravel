@@ -18,6 +18,7 @@ class CreateEventUsersTable extends Migration
             $table->integer('event_id');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -29,4 +30,5 @@ class CreateEventUsersTable extends Migration
     {
         Schema::drop('event-users');
     }
+
 }
