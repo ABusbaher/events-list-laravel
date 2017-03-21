@@ -19,20 +19,22 @@
             {!! Form::close() !!}
 
             @if($events_s)
-                        @foreach($events_s as $event)
-                            <div class="col-sm-6 col-md-4">
-                                <div class="thumbnail">
-                                    <img class="img-responsive" style="max-width: 350px" src="{{ URL::to('/') }}/images/{{$event->image}}"
-                                         alt="...">
-                                    <a class="a_search" href="{{route('admin.events.edit',$event->event_id)}}"
-                                    >{{$event->title}}</a>
+                @foreach($events_s as $event_s)
+                   <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                           <img class="img-responsive" style="max-width: 350px" src="{{ URL::to('/') }}/images/{{$event_s->image}}"
+                                alt="...">
+                            <a class="a_search" href="{{route('admin.events.edit',$event_s->slug)
+                            }}">{{$event_s->title}}</a>
+                         </div>
+                    </div>
 
-                                </div>
-                            </div>
-                        @endforeach
+            @endforeach
             @endif
         </div>
     </div>
+
+
     <div class="row">
         <div class=".col-xs-12 .col-md-6 .col-md-offset-3">
             <br /><br />
@@ -78,7 +80,7 @@
 
     </div>
         <div class="clearfix">
-              <a class="btn btn-primary btn-lg active pull-left" href="{{route('admin.events.edit',$event->event_id)}}"
+              <a class="btn btn-primary btn-lg active pull-left" href="{{route('admin.events.edit',$event->slug)}}"
                  role="button">Izmeni</a>
 
           {!! Form::open(['method'=>'DELETE', 'action' => ['AdminEventsController@destroy',$event->event_id]]) !!}
@@ -90,6 +92,12 @@
         @else
             <h2>Trenutno nema događaja</h2>
         @endif
-    @endsection
         </div>
     </div>
+
+        <div class="row">
+           <div class=".col-xs-12 .col-md-6 .col-md-offset-5 pull-right">
+               {!!$events->render()!!}
+           </div>
+        </div>
+    @endsection

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\EventUser;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
 
@@ -17,17 +19,19 @@ class AdminEventsController extends Controller
      */
     public function index(Request $request)
     {
-        $events_s = Event::select('event_id','title','image');
+        $events_s = Event::select('event_id','title','image','slug');
         $search = $request->get('search');
         if(!empty($search)) {
-            $events_s->where('title', 'like', '%' . $search . '%')
-                ->orWhere('date_and_time', 'LIKE', '%' . $search . '%')
+            $events_s
+                ->whereDate('date_and_time', 'LIKE', '%' . $search . '%')
+                ->orWhere('title', 'LIKE', '%' . $search . '%')
                 ->orWhere('place', 'LIKE', '%' . $search . '%');
-            $events_s = $events_s->paginate(6);
+
+            $events_s = $events_s->limit(6)->get();
 
         }
 
-        $events = Event::all();
+        $events = Event::orderBy('date_and_time')->paginate(5, ['*'], 'glavna');
         return view('admin.events.index',compact('events','events_s'));
     }
 
@@ -86,9 +90,10 @@ class AdminEventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $event = Event::findOrFail($id);
+        $event = Event::findBySlug($slug);
+        //$dog = EventUser::findOrFail($event_id);
         return view('admin.events.edit',compact('event'));
     }
 
@@ -107,6 +112,8 @@ class AdminEventsController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF',
             'date_and_time' => 'required|date',
             'place' => 'required',
+            ['image.required' => 'Niste izabrali sliku',
+                'image.image' => 'Izabrani fajl nije slika',]
         ]);
 
         $event = Event::findOrFail($id);

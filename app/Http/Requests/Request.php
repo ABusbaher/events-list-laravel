@@ -25,6 +25,8 @@ abstract class Request extends FormRequest
         return [
             'user_id.required' => 'Morate biti ulogovani da bi ste se prijavili za dogadjaj',
             'event_id.unique:event-users,event_id,NULL,id,user_id,' => 'Već ste se prijavili na događaj',
+            'image.required' => 'Niste izabrali sliku!',
+            'image.image' => 'Izabrani fajl nije slika!'
         ];
         $validation = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, $messages );;
 

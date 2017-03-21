@@ -2,14 +2,14 @@
 
 namespace App;
 use Cviebrock\EloquentSluggable\Sluggable;
-
-
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
     use Sluggable;
+    use SluggableScopeHelpers;
 
     public function sluggable()
     {
@@ -28,7 +28,7 @@ class Event extends Model
 
     protected $fillable = [
         'title', 'description', 'place','date_and_time',
-        'image', 'event_id'
+        'image', 'event_id','slug'
     ];
 
     public function getDate_and_timeAtribute($date){

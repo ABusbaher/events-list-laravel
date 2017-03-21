@@ -14,22 +14,25 @@ use Illuminate\Support\Facades\Session;
 class EventController extends Controller
 {
     public function getAll(Request $request){
-        $events_s = Event::select('event_id','title','image');
+        $events_s = Event::select('event_id','title','image','slug');
         $search = $request->get('search');
         if(!empty($search)) {
             $events_s->where('title', 'like', '%' . $search . '%')
-                ->orWhere('date_and_time', 'LIKE', '%' . $search . '%')
+                ->orWhereDate('date_and_time', 'LIKE', '%' . $search . '%')
                 ->orWhere('place', 'LIKE', '%' . $search . '%');
-            $events_s = $events_s->paginate(6);
+            $events_s = $events_s->limit(6)->get();
 
         }
 
-        $events = Event::all();
+        $events = Event::paginate(6);
+        foreach($events as $event) {
+                $event->description = $this->shortenText($event->description,30);
+        }
         return view('frontend.index',compact('events','events_s'));
     }
 
-    public function getSingle($event_id){
-        $event = Event::findOrFail($event_id);
+    public function getSingle($slug){
+        $event = Event::findBySlug($slug);
         if(!$event){
             return redirect('events');
         }
@@ -52,6 +55,13 @@ class EventController extends Controller
         Session::flash('check_in','Uspešno ste se prijavili');
         return redirect('events');
     }
-
+    private function shortenText($text,$words_count){
+        if(str_word_count($text,0) > $words_count) {
+          $words = str_word_count($text,2);
+          $pos = array_keys($words);
+          $text = substr($text,0,$pos[$words_count]) . '...';
+        }
+        return $text;
+    }
 
 }

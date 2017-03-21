@@ -23,7 +23,7 @@
                     <div class="thumbnail">
                         <img class="img-responsive" style="max-width: 350px" src="{{ URL::to('/') }}/images/{{$event->image}}"
                              alt="...">
-                        <a class="a_search"href="{{route('single_event',$event->event_id)}}" >{{$event->title}}</a>
+                        <a class="a_search"href="{{route('single_event',$event->slug)}}" >{{$event->title}}</a>
 
                     </div>
                 </div>
@@ -51,14 +51,19 @@
                                 <div class="clearfix">
                                     <div class="pull-left"><p><strong><i>{{ Carbon\Carbon::parse($event->date_and_time)->format('d-m-Y
         H:i') }},{{$event->place}}</i></strong></p></div>
-                                    <a href="{{route('single_event',$event->event_id)}}" class="btn btn-primary
+                                    <a href="{{route('single_event',$event->slug)}}" class="btn btn-primary
                                     pull-right" role="button">Čitaj više</a>
                                     </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
+               @endforeach
             @endforeach
+                <div class="row">
+                    <div class=".col-xs-12 .col-md-6 .col-md-offset-5 pull-right">
+                        {!!$events->render()!!}
+                    </div>
+                </div>
         @endif
     </div>
 @endsection

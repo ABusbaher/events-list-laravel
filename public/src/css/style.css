@@ -89,53 +89,26 @@ hr {
 }
 
 /*---------- PAGINATION STYLE ---------- */
-.inactive a{
-    background-color: #A9A9A9!important;
-    color:#fff;
-}
-.inactive a:hover,
-.inactive a:active{
-    border: 1px solid #0f0fbd!important;
-    background-color: #fff!important;
-    color:#0f0fbd!important;
-}
-.next a{
-    margin:0 20px;
-    background-color: #0f0fbd!important;
-    color:#fff;
-}
-.active a{
-    background-color: #0f0fbd!important;
-    color:#fff;
-}
-.active a:hover,
-.active a:active{
-    border: 1px solid #0f0fbd!important;
-    background-color: #fff!important;
-    color:#0f0fbd!important;
-}
-.next a{
-    margin:0 20px;
-    background-color: #0f0fbd!important;
-    color:#fff;
-}
-.next a:hover,
-.next a:active{
-    margin:0 20px;
-    background-color: #fff!important;
-    border: 1px solid black;
-    color:#0f0fbd!important;
+
+.pagination li a{
+     background-color: #fff!important;
+     border: 1px solid black;
+     color:#0f0fbd!important;
+ }
+.pagination li a:hover,
+.pagination li a:active{
+    background-color:#4D4C4C!important;
+    border: 1px solid #fff;
+    color:#fff!important;
 }
 
-.previous a{
-    margin:0 20px;
+.active span{
+    font-size: 20px;
     background-color: #0f0fbd!important;
     color:#fff;
 }
-.previous a:hover,
-.previous a:active{
-    margin: 0 20px;
-    background-color: #fff!important;
-    border: 1px solid black;
-    color:#0f0fbd!important;
-}
+.disabled span{
+    font-size: 20px;
+    background-color: #C3BFBE!important;
+    color:#fff;
+
