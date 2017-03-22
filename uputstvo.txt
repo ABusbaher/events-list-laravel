@@ -1,0 +1,14 @@
+LISTA DOGADJAJA
+
+Admin šifra:admin1
+admin email:admin@a.com
+
+korisnik šifra:sima1
+korisnik email:sima@s.com
+
+Administrator može da kreira,menja i briše dogadjaje.
+Može da menja role(administrator,subscriber) i statuse(aktivan, nije aktivan) korisnika kao i da briše same korisnike.
+Ulogovan korisnik sa statusom aktive može da prijavi na dogadjaj. Korisnik ne može da se prijavi dva puta na isti dogadjaj.
+Ulogovani korisnik ima stranu sa svojim podacima i listom na koje dogadjaje se prijavio.
+Adminstrator ima listu svih dogadjaja pocev od onih sa najviše prijava kao i podatke sa imenima korisnika za prijavljeni dogadjaj.
+Linkovi ka pojedinacnom dogadjaju su SEO optimizovani.
