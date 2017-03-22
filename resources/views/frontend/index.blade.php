@@ -4,12 +4,13 @@
 @endsection
 @section('content')
     <div class="row">
-        <h1>Lista dogadjaja</h1>
+        <h1>Lista festivala</h1>
+        <!--------------PRIKAZ FORME ZA PRETRAGU DOGADJAJA------->
         {!! Form::open(['method'=>'GET','route'=>'events','class'=>'form-group','role'=>'search'])
          !!}
 
         <div class="input-group ">
-            <input type="text" name="search" class="form-control" placeholder="Pretraži događaje...">
+            <input type="text" name="search" class="form-control" placeholder="Pretraži festivale...">
             <span class="input-group-btn">
           <button type="submit" class="btn btn-default-sm">
             <i class="fa fa-search"></i>
@@ -19,6 +20,7 @@
         {!! Form::close() !!}
         @if($events_s)
             @foreach($events_s as $event)
+            <!-------PRIKAZ DOGADJAJA------->
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <img class="img-responsive" style="max-width: 350px" src="{{ URL::to('/') }}/images/{{$event->image}}"
@@ -31,7 +33,7 @@
         @endif
     </div>
     <div class="row">
-
+   <!-----PRIKAZ PORUKE O USPEŠNOJ PRIJAVI NA DOGADJAJ------->
     @if(Session::has('check_in'))
             <div class="alert alert-success">
                 <h4>{{session('check_in')}}</h4>
@@ -41,6 +43,7 @@
         @if($events)
             @foreach($events->chunk(3) as $chunk)
                 @foreach($chunk as $event)
+                <!--------ISPIS DOGADJAJA------->
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                             <img class="img-responsive" style="max-width: 350px" src="{{ URL::to('/') }}/images/{{$event->image}}"
@@ -60,6 +63,7 @@
                @endforeach
             @endforeach
                 <div class="row">
+                    <!-----PRIKAZ PAGINACIJE------->
                     <div class=".col-xs-12 .col-md-6 .col-md-offset-5 pull-right">
                         {!!$events->render()!!}
                     </div>

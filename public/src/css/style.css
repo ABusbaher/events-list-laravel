@@ -23,7 +23,6 @@ h3 {
 a {
     text-decoration: none;
     color:#fff!important;
-    text-decoration: bold;
     font-size: 20px;
 }
 /*---------- NAVIGATION STYLE---------- */
@@ -55,15 +54,17 @@ hr {
 .btn {
     text-decoration: none;
     color:#fff!important;
-    text-decoration: bold;
-    font-size: 16px !important;;
+    font-size: 16px !important;
+    border-color: #0f0fbd!important;
     background-color: #0f0fbd!important;
 }
+
 .btn:hover{
     color:#0f0fbd!important;
     text-decoration: bold;
     font-size: 16px !important;
     background-color: #fff!important;
+
 }
 
 .single_page_p{
@@ -87,7 +88,17 @@ hr {
     margin-top: 50px;
     padding: 20px;
 }
+.danger button{
+    background-color: red!important;
+}
 
+.row{
+    padding-bottom: 30px;
+}
+.page a{
+    font-size: 20px;
+    color: #0f0fbd!important;
+}
 /*---------- PAGINATION STYLE ---------- */
 
 .pagination li a{
@@ -107,8 +118,74 @@ hr {
     background-color: #0f0fbd!important;
     color:#fff;
 }
-.disabled span{
+.disabled span {
     font-size: 20px;
-    background-color: #C3BFBE!important;
-    color:#fff;
+    background-color: #C3BFBE !important;
+    color: #fff;
+}
 
+/*---------- FOOTER STYLE---------- */
+
+footer{
+    background-color: #0f0fbd;
+    width: 100%;
+    text-align: left;
+    font: normal 16px sans-serif;
+    flex: 0 0 auto;
+    padding: 45px 50px;
+}
+
+footer .footer-limiter {
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+footer .footer-left p{
+    color:  #8f9296;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Footer links */
+
+footer p.footer-links{
+    font-size:18px;
+    font-weight: bold;
+    color:  #ffffff;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+footer p.footer-links a{
+     display:inline-block;
+     line-height: 1.8;
+     text-decoration: none;
+     color:  inherit;
+ }
+
+footer p.footer-links a:hover,
+footer p.footer-links a:hover{
+    color:  red!important;
+    background-color: whitesmoke!important;
+}
+
+footer .footer-right{
+    float: right;
+    margin-top: 6px;
+    max-width: 180px;
+}
+
+footer .footer-right a{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color:  #0080ff;
+    border-radius: 2px;
+
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+
+    margin-left: 3px;
+}

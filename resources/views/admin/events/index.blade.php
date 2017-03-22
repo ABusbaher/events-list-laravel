@@ -5,6 +5,7 @@
 @section('content')
     <div class="row">
         <div class=".col-xs-12 .col-md-6 .col-md-offset-3">
+            <!------------------FORMA ZA PRETRAGU DOGADJAJA------------>
             {!! Form::open(['method'=>'GET','route'=>'admin.events.index','class'=>'form-group','role'=>'search'])
           !!}
 
@@ -20,11 +21,12 @@
 
             @if($events_s)
                 @foreach($events_s as $event_s)
+                <!--------ISPIS REZULTATA PRETRAGE --------->
                    <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                            <img class="img-responsive" style="max-width: 350px" src="{{ URL::to('/') }}/images/{{$event_s->image}}"
                                 alt="...">
-                            <a class="a_search" href="{{route('admin.events.edit',$event_s->slug)
+                            <a class="a_search" href="{{route('admin.events.edit',$event_s->event_id)
                             }}">{{$event_s->title}}</a>
                          </div>
                     </div>
@@ -38,6 +40,7 @@
     <div class="row">
         <div class=".col-xs-12 .col-md-6 .col-md-offset-3">
             <br /><br />
+            <!-----ISPIS PORUKA KROZ SESIJE PROSLEDJENIH PREKO FORMI------->
             @if(Session::has('deleted_event'))
                 <div class="alert alert-danger">
                     <h4>{{session('deleted_event')}}</h4>
@@ -68,6 +71,7 @@
                 @foreach($events as $event)
 
                 <h2>{{$event->title}}</h2>
+         <!-----------ISPIS DOGADJAJA------->
     <div class="row">
        <div class="col-md-6 .col-md-offset-3">
         <img src="{{ URL::to('/') }}/images/{{$event->image}}" class="img-event" class="img-responsive" alt=""/>
@@ -80,11 +84,13 @@
 
     </div>
         <div class="clearfix">
-              <a class="btn btn-primary btn-lg active pull-left" href="{{route('admin.events.edit',$event->slug)}}"
-                 role="button">Izmeni</a>
-
+              <a class="btn btn-primary btn-lg active pull-left" href="{{route('admin.events.edit',$event->event_id)}}"
+                 role="button">Vidi</a>
+            <!-----FORMA ZA BRISANJE DOGADJAJA------->
           {!! Form::open(['method'=>'DELETE', 'action' => ['AdminEventsController@destroy',$event->event_id]]) !!}
+          <div class="danger">
             <button class="btn btn-danger pull-right" type="submit">Obriši</button>
+          </div>
           {!! Form::close() !!}
         </div>
             <hr>
@@ -94,7 +100,7 @@
         @endif
         </div>
     </div>
-
+    <!-----PRIKAZ PAGINACIJE------->
         <div class="row">
            <div class=".col-xs-12 .col-md-6 .col-md-offset-5 pull-right">
                {!!$events->render()!!}

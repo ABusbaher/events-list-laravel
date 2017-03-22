@@ -6,9 +6,9 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h1>Izmeni privilegije korisnika</h1>
-
+            <!-----ISPIS GREŠKE KOD SLANJA FORME------->
             @include('errors.error')
-
+            <!-----------ISPIS FORME ZA IZMENU PRAVA KORISNIKA-------->
             {!! Form::model($user,['method'=> 'PATCH','action' => ['AdminUserController@update',$user->id]]) !!}
 
             <div class="form-group">
@@ -34,11 +34,12 @@
             <button class="btn btn-success pull-left" type="submit">Izmeni korisnika</button>
 
             {!! Form::close() !!}
-
+            <!---------------ISPIS FORME ZA BRISANJE KORISNIKA-------------->
             {!! Form::open(['method'=>'DELETE', 'action' => ['AdminUserController@destroy',$user->id]]) !!}
 
-
+            <div class="danger">
                 <button class="btn btn-danger pull-right" type="submit">Obriši korisnika</button>
+            </div>
 
               {!! Form::close() !!}
             </div>

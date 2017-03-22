@@ -29,6 +29,8 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = 'events';
+    protected $redirectAfterLogout = 'login';
+
 
     /**
      * Create a new authentication controller instance.
@@ -67,6 +69,9 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'is_active' => 0, //not active
+            'role_id' => 2, //subscriber
         ]);
     }
+
 }

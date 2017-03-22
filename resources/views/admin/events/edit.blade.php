@@ -4,11 +4,24 @@
 @endsection
 @section('content')
     <div class="row">
+        <div class="col-md-3">
+            <!-----UKUPAN BROJ PRIJAVLJENIH UČESNIKA NA TAJ DOGADJAJ------->
+            <ul><h2>Prijavljeni učesnici({{$user_count}}):
+           <!-----IMENA SVIH PRIJAVLJENIH UČESNIKA NA TAJ DOGADJAJ------->
+            @if($event_users)
+                @foreach($event_users as $e_user)
+                    <li><h4>{!! $e_user->users->name !!}</h4></li>
+                @endforeach
+            @endif
+
+            </h2></ul>
+            <img src="{{ URL::to('/') }}/images/{{$event->image}}" class="img-event" class="img-responsive" alt=""/>
+        </div>
         <div class="col-md-6 col-md-offset-3">
-            <h1>Izmeni događaj</h1>
-
+            <h2>Izmeni događaj</h2>
+            <!-----ISPIS GREŠKE KOD SLANJA FORME------->
             @include('errors.error')
-
+        <!-----------------------------FORMA ZA IZMENU DOGADJAJA--------------------------->
             {!! Form::model($event,['method'=> 'PATCH','action' => ['AdminEventsController@update',
             $event->event_id],'files' =>true]) !!}
 
@@ -41,7 +54,8 @@
             {!! Form::close() !!}
             </div>
         </div>
-    </div>
 @endsection
+@section('scripts')
 <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
 <script>tinymce.init({ selector:'textarea' });</script>
+@endsection

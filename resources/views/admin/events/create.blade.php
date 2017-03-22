@@ -8,7 +8,7 @@
             <h1>Dodaj novi dogadjaj</h1>
 
             @include('errors.error')
-
+                <!-----------------------------FORMA ZA DODAVANJE NOVOG DOGADJAJA--------------------------->
         {!! Form::open(['method'=> 'POST','action' => 'AdminEventsController@store','files' => true]) !!}
 
             <div class="form-group">
@@ -44,5 +44,7 @@
         </div>
     </div>
 @endsection
-<script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
+@section('scripts')
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+@endsection

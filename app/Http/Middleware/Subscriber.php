@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class Subscriber
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,13 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        //OMOGUDJEN PRISTUP SAMO AKTIVNOM KORISNIKU SA ROLOM ADMINISTRATOR
+        //DOZVOLJEN PRISTUP SAMO ULOGOVANOM KORISNIKU SA ROLOM SUBSCRIBER
         if(Auth::check()){
-            if(Auth::user()->isAdmin()){
+            if(Auth::user()->isSubscriber()){
                 return $next($request);
             }
         }
         return redirect('events');
+        return $next($request);
     }
 }

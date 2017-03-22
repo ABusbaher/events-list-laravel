@@ -7,6 +7,7 @@
         <div class=".col-xs-12 .col-md-6 .col-md-offset-3">
 
           <br /><br />
+            <!-----ISPIS PORUKA KROZ SESIJE PROSLEDJENIH PREKO FORMI------->
            @if(Session::has('deleted_user'))
               <div class="alert alert-danger">
                     <h4>{{session('deleted_user')}}</h4>
@@ -36,6 +37,7 @@
                     @foreach($users as $user)
                         <tbody>
                         <tr>
+                            <!---------------ISPIS KORISNIKA------->
                             <td>{{$user->name}}</td>
                             <td>{{$user->role_id ? $user->role->name : 'Dodelite privilegiju'}}</td>
                             <td>{{$user->email}}</td>
@@ -49,6 +51,11 @@
                     @endforeach
                 @endif
             </table>
+            <!-----PRIKAZ PAGINACIJE------->
+            <div class="class pull-right">
+                {!!$users->render()!!}
+            </div>
+
         </div>
     </div>
 @endsection

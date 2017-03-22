@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\EventUser;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,6 +20,7 @@ class AdminEventsController extends Controller
      */
     public function index(Request $request)
     {
+        //PRETRAGA DOGADJAJA PO DATUMU,NASLOVU ILI MESTU
         $events_s = Event::select('event_id','title','image','slug');
         $search = $request->get('search');
         if(!empty($search)) {
@@ -31,7 +33,8 @@ class AdminEventsController extends Controller
 
         }
 
-        $events = Event::orderBy('date_and_time')->paginate(5, ['*'], 'glavna');
+        //ISPIS SVIH DOGADJAJA POČEV OD ONOG SA NAJVIŠE PRIJAVLJENIH KORISNIKA
+        $events =Event::withCount('users')->orderBy('users_count', 'desc')->paginate(6);
         return view('admin.events.index',compact('events','events_s'));
     }
 
@@ -53,6 +56,7 @@ class AdminEventsController extends Controller
      */
     public function store(Request $request)
     {
+        //DODAVANJE NOVOG DOGADJAJA I SLIKE
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
@@ -90,11 +94,14 @@ class AdminEventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $event = Event::findBySlug($slug);
-        //$dog = EventUser::findOrFail($event_id);
-        return view('admin.events.edit',compact('event'));
+        //PRIKAZ DOGADJAJA ZAJEDNO SA SPISKOM PRIJAVLJENIH UČESNIKA I NJIHOVIM BROJEM
+        $event = Event::findOrFail($id);
+        $user_count = EventUser::where('event_id',$id)->count();
+        $event_users = EventUser::where('event_id',$id)->get();
+
+        return view('admin.events.edit',compact('event','user_count','event_users'));
     }
 
     /**
@@ -106,6 +113,7 @@ class AdminEventsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //IZMENA DOGADJAJA
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
@@ -138,6 +146,7 @@ class AdminEventsController extends Controller
      */
     public function destroy($id)
     {
+        //BRISANJE DOGADJAJA (I SLIKE IZ FOLDERA)
         $event = Event::findOrFail($id);
         unlink('images/'. $event->image);
         $event->delete();

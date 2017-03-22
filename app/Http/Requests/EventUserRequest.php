@@ -33,6 +33,7 @@ class EventUserRequest extends Request
     public function messages()
     {
         return [
+            //CUSTOM ERRORS ZA VEĆ PRIJAVLJENOG KORISNIKA NA DOGADJAJ NE RADI NI OVDE
             'user_id.required' => 'Morate biti ulogovani da bi ste se prijavili za dogadjaj',
             'event_id.unique:event-users,event_id,NULL,id,user_id,' => 'Već ste se prijavili na događaj',
         ];

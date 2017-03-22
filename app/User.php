@@ -34,8 +34,17 @@ class User extends Authenticatable
       return $this->hasMany('App\Event','event-users');
     }
 
+    //KORISNIK JE ADMINISTRATOR I STATUS MU JE ACTIVE
     public function isAdmin(){
-        if($this->role->name == "administrator" && $this->is_active == 1){
+        if($this->role_id == 1 && $this->is_active == 1){
+            return true;
+        }
+        return false;
+
+    }
+    //KORISNIK JE SUBSCRIBER
+    public function isSubscriber(){
+        if($this->role_id == 2){
             return true;
         }
         return false;

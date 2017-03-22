@@ -95,6 +95,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        //NI OVDE NE RADI
         'user_id'=>['required' =>
             'Morate biti ulogovani da bi ste se prijavili za dogadjaj',
         ],

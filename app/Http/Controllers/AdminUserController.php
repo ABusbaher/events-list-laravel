@@ -18,7 +18,8 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        //PRIKAZ SVIH KORISNIKA(10 PO STRANI)
+        $users = User::paginate(10);
         return view('admin.users.index',compact('users'));
     }
 
@@ -62,7 +63,8 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findSlugOrFail($id);
+        //PRIKAZ KORISNIKA
+        $user = User::findOrFail($id);
         $roles = Role::lists('name','id')->all();
         return view('admin.users.edit',compact('user','roles'));
     }
@@ -76,6 +78,7 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //IZMENA KORISNIKA
         $this->validate($request, [
             'email' => 'required',
             'name' => 'required'
@@ -97,7 +100,7 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id)->delete();
-        Session::flash('deleted_user','Korisnik je uspešno obirsan');
+        Session::flash('deleted_user','Korisnik je uspešno obrisan');
         return redirect('/admin/users');
     }
 }
